@@ -36,6 +36,40 @@ const getListEstados = function () {
 }
 
 
+//Retorna a lista de cidades pelo Estado
+const getListCidades = function (siglaEstado) {
+    let sigla = siglaEstado;
+    let arrayListCidades = [];
+    let jsonListaCidades = {};
+    let erro = true;
+
+    //Tratamento para validar se o argumento foi encaminhado na função
+    if(typeof(sigla) != 'undefined' && sigla != '' && sigla.length == 2){
+
+        //Percorre o array de cidades para validar a sigla do estado}
+        dados_estados_cidades.listaDeEstados.estados.forEach(item => {
+            //localiza a sigla do estado dentro do array de cidades
+            if(item.sigla.indexOf(sigla.toUpperCase()) == 0){
+                //Percorre o array da chave de cidades dentro do  estado que foi encontrado
+                item.cidades.forEach(itemCidade => {
+                    arrayListCidades.push(itemCidade.nome);
+                    erro = false;
+                });
+
+                jsonListaCidadesJSON.uf = item.sigla
+                jsonListaCidadesJSON.descricao = item.nome
+                jsonListaCidadesJSON.cont = arrayListCidades.length
+                jsonListaCidadesJSON.cont = arrayListCidades
+            }
+
+        });
+
+    }
+    if(erro)
+        return false;
+    else
+        return jsonListaCidadesJSON;
+};
 
 
-console.log(getListEstados());
+console.log(getListCidades('aa'));
