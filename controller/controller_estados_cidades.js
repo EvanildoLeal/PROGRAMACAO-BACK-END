@@ -71,5 +71,10 @@ const getListCidades = function (siglaEstado) {
         return jsonListaCidadesJSON;
 };
 
+module.exports = {
+    getListEstados,
+    getListCidades
+}
+
 
 console.log(getListCidades('aa'));
